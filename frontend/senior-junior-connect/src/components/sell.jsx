@@ -19,7 +19,7 @@ const Sell = () => {
   // Check authentication
   useEffect(() => {
     axios
-      .get("http://localhost:8080/auth/user", { withCredentials: true })
+      .get("https://college-olx-backend.onrender.com/auth/user", { withCredentials: true })
       .then((response) => {
         console.log("Auth Response:", response.data);
         setIsAuthenticated(response.data.authenticated || false);
@@ -65,7 +65,7 @@ const Sell = () => {
     formDataToSend.append("image", formData.image);
 
     try {
-      const response = await axios.post("http://localhost:8080/mycollege", formDataToSend, {
+      const response = await axios.post("https://college-olx-backend.onrender.com/mycollege", formDataToSend, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });
