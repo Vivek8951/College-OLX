@@ -62,7 +62,7 @@ const sessionOptions = {
     cookie: {
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         httpOnly: true, // Security best practice
-        secure: process.env.NODE_ENV === "production", // Must be true in production
+        secure: true,
         sameSite: "none", // Fixes session issue on cross-origin requests
     },
 };
