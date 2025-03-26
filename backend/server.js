@@ -19,12 +19,12 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 app.use(
     cors({
-      origin: ["http://localhost:5173", 
-        "https://college-olx.onrender.com"],
-      credentials: true,
-      methods: ["GET", "POST", "PUT", "DELETE"], 
+        origin: ["http://localhost:5173", "https://college-olx.onrender.com"],
+        credentials: true, // Allow cookies to be sent
+        methods: ["GET", "POST", "PUT", "DELETE"],
     })
-  );
+);
+
 
 
 // Database Connection
@@ -58,16 +58,17 @@ const sessionOptions = {
     store,
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false,  // Change from true to false
-cookie: {
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",  // true in production
-    sameSite: "none",  // Required for cross-origin cookies
-},
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        httpOnly: true, // Security best practice
+        secure: process.env.NODE_ENV === "production", // Must be true in production
+        sameSite: "none", // Fixes session issue on cross-origin requests
+    },
 };
+
 app.use(session(sessionOptions));
+
 
 // Passport Configuration
 app.use(passport.initialize());
@@ -76,6 +77,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+store.on("error", function (error) {
+    console.error("Session Store Error:", error);
+});
 // Routes
 
 app.use("/", userRoutes); 
