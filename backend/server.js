@@ -81,7 +81,7 @@ app.use("/", userRoutes);
 app.use("/mycollege",itemRoutes);
 // Server Setup
 const Port = process.env.PORT || 3000;
-app.listen(Port, () => {
+app.listen(Port, "0.0.0.0", () => {
     console.log(`Server started at port ${Port}`);
 });
 
