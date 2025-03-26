@@ -13,7 +13,7 @@ const MyCollege = () => {
   // Check authentication
   useEffect(() => {
     axios
-      .get("http://localhost:8080/auth/user", { withCredentials: true })
+      .get("https://college-olx-backend.onrender.com/auth/user", { withCredentials: true })
       .then((response) => {
         console.log("Auth Response:", response.data);
         setIsAuthenticated(response.data.authenticated || false);
