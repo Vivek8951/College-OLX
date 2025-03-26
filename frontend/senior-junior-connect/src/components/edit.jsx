@@ -20,7 +20,7 @@ const EditItem = () => {
   // Fetch existing item details
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/mycollege/${id}`, { withCredentials: true })
+      .get(`https://college-olx-backend.onrender.com/mycollege/${id}`, { withCredentials: true })
       .then((response) => {
         const { name, price, description, contact } = response.data.item;
         setItem({ name, price, description, contact });
@@ -41,7 +41,7 @@ const EditItem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/mycollege/${id}`, item, { withCredentials: true });
+      await axios.put(`https://college-olx-backend.onrender.com/mycollege/${id}`, item, { withCredentials: true });
       navigate(`/items/${id}`); // ✅ Fix navigation to correct URL
     } catch (error) {
       console.error("Error updating item:", error);
