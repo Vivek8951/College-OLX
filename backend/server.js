@@ -19,7 +19,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 app.use(
     cors({
-        origin: "https://college-olx.onrender.com",
+        origin: ["https://college-olx.onrender.com", "http://localhost:3000"],
         credentials: true, 
         methods: ["GET", "POST", "PUT", "DELETE"],
     })
@@ -62,11 +62,11 @@ const sessionOptions = {
     cookie: {
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         httpOnly: true, // Security best practice
-        secure: true,
+        secure: process.env.NODE_ENV === "production",
         sameSite: "none", // Fixes session issue on cross-origin requests
     },
 };
-
+app.set("trust proxy", 1);
 app.use(session(sessionOptions));
 
 
