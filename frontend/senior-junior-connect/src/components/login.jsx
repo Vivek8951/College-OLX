@@ -21,7 +21,7 @@ export default function Login() {
     e.preventDefault(); 
   
     try {
-      const response = await fetch("http://localhost:8080/login", {
+      const response = await fetch("https://college-olx-backend.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
