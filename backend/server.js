@@ -19,8 +19,8 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 app.use(
     cors({
-        origin: ["http://localhost:5173", "https://college-olx.onrender.com"],
-        credentials: true, // Allow cookies to be sent
+        origin: "https://college-olx.onrender.com",
+        credentials: true, 
         methods: ["GET", "POST", "PUT", "DELETE"],
     })
 );
