@@ -59,13 +59,13 @@ const sessionOptions = {
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,  // Change from true to false
-    cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        secure: false,  // Set to true in production (requires HTTPS)
-        sameSite: "lax",  
-    },
+cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",  // true in production
+    sameSite: "none",  // Required for cross-origin cookies
+},
 };
 app.use(session(sessionOptions));
 
