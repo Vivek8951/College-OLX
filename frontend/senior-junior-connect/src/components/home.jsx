@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/auth/user", { withCredentials: true })
+      .get("https://college-olx-backend.onrender.com/auth/user", { withCredentials: true })
       .then((response) => {
         console.log("Auth Response:", response.data);
         setIsAuthenticated(response.data.authenticated || false);
@@ -23,7 +23,7 @@ export default function Home() {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/auth/logout", {
+      const response = await axios.get("https://college-olx-backend.onrender.com/auth/logout", {
         withCredentials: true, 
       });
 
