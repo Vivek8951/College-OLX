@@ -8,7 +8,7 @@ export default function CollegeNav() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/auth/user", { withCredentials: true })
+      .get("https://college-olx-backend.onrender.com/auth/user", { withCredentials: true })
       .then((response) => {
         setIsAuthenticated(response.data.authenticated || false);
       })
@@ -19,7 +19,7 @@ export default function CollegeNav() {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/auth/logout", {
+      const response = await axios.get("https://college-olx-backend.onrender.com/auth/logout", {
         withCredentials: true,
       });
       if (response.status === 200) {
