@@ -13,7 +13,7 @@ const Show = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/mycollege/${id}`, { withCredentials: true })
+      .get(`https://college-olx-backend.onrender.com/mycollege/${id}`, { withCredentials: true })
       .then((response) => {
         setItem(response.data.item);
         setIsOwner(response.data.isOwner);
@@ -28,7 +28,7 @@ const Show = () => {
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     try {
-      await axios.delete(`http://localhost:8080/mycollege/${id}`, { withCredentials: true });
+      await axios.delete(`https://college-olx-backend.onrender.com/mycollege/${id}`, { withCredentials: true });
       navigate("/mycollege"); 
     } catch (error) {
       console.error("Error deleting item:", error);
