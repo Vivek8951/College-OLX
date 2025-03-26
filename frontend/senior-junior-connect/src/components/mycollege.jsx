@@ -30,7 +30,7 @@ const MyCollege = () => {
     if (!loading && isAuthenticated) {
       setItemsLoading(true); // Start loading
       axios
-        .get("http://localhost:8080/mycollege")
+        .get("https://college-olx-backend.onrender.com/mycollege")
         .then((response) => {
           setItems(response.data); // Set items correctly
         })
